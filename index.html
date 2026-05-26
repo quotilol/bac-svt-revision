@@ -323,7 +323,7 @@
 
 <header>
   <h1>Révision BAC SVT - Première</h1>
-  <p>4 chapitres · 40 questions</p>
+  <p>4 chapitres · 44 questions</p>
 </header>
 
 <div class="chapter-bar">
@@ -468,18 +468,26 @@
 
   <div class="fiche" data-chapter="radiatif">
     <span class="chapter-badge badge-radiatif">Bilan radiatif terrestre</span>
-    <h2><span class="num">3</span> Rayonnement IR et gaz à effet de serre</h2>
+    <h2><span class="num">3</span> Rayonnement IR et mécanisme de l'effet de serre</h2>
     <ul>
       <li>La Terre émet un <b>rayonnement infrarouge (IR)</b> car sa température est trop faible pour émettre de la lumière visible.</li>
-      <li>La chaleur de la Terre provient du rayonnement solaire absorbé.</li>
-      <li>Les <b>gaz à effet de serre (GES)</b> absorbent les rayonnements IR :</li>
+      <li>La chaleur de la Terre provient du rayonnement solaire absorbé par la surface.</li>
+    </ul>
+    <div class="box-yellow">
+      <b>Mécanisme de l'effet de serre :</b><br>
+      Surface terrestre absorbe les rayons solaires → se réchauffe → produit des IR<br>
+      → Ces IR sont absorbés par les <b>GES</b><br>
+      → Les GES se réchauffent → re-émettent des IR vers la Terre<br>
+      → Ce retour d'énergie = <b>l'effet de serre</b>
+    </div>
+    <ul>
       <li><b>Vapeur d'eau (H₂O)</b> : GES le plus concentré, contribue à ~<b>70%</b> de l'effet de serre.</li>
       <li>Autres GES : <b>CO₂</b>, <b>ozone (O₃)</b>, <b>méthane (CH₄)</b>.</li>
     </ul>
     <div class="tags">
       <span class="tag tag-radiatif">infrarouge (IR)</span><span class="tag tag-radiatif">GES</span>
       <span class="tag tag-radiatif">vapeur d'eau 70%</span><span class="tag tag-radiatif">CO₂</span>
-      <span class="tag tag-radiatif">CH₄</span><span class="tag tag-radiatif">O₃</span>
+      <span class="tag tag-radiatif">CH₄</span><span class="tag tag-radiatif">O₃</span><span class="tag tag-radiatif">effet de serre</span>
     </div>
   </div>
 
@@ -488,6 +496,8 @@
     <h2><span class="num">4</span> Le bilan radiatif terrestre</h2>
     <div class="box-blue">Bilan radiatif = Énergie reçue − Énergie émise = 0</div>
     <ul>
+      <li>Énergie solaire reçue par la Terre : <b>342 W/m²</b></li>
+      <li>Dont réfléchi (atmosphère + nuages + surface) : ~<b>102 W/m²</b> → albédo ≈ 0,3</li>
       <li>La Terre est en <b>équilibre dynamique</b> : elle perd autant d'énergie qu'elle en reçoit.</li>
       <li>La température globale est donc <b>globalement constante</b>.</li>
       <li>Ce bilan peut se <b>déséquilibrer</b> par modification de :</li>
@@ -496,8 +506,31 @@
       <li>Bilan positif → <b>réchauffement</b> ; bilan négatif → <b>refroidissement</b></li>
     </ul>
     <div class="tags">
-      <span class="tag tag-radiatif">bilan = 0</span><span class="tag tag-radiatif">équilibre dynamique</span>
-      <span class="tag tag-radiatif">réchauffement</span><span class="tag tag-radiatif">albédo</span>
+      <span class="tag tag-radiatif">342 W/m²</span><span class="tag tag-radiatif">bilan = 0</span>
+      <span class="tag tag-radiatif">équilibre dynamique</span><span class="tag tag-radiatif">réchauffement</span>
+    </div>
+  </div>
+
+  <div class="fiche" data-chapter="radiatif">
+    <span class="chapter-badge badge-radiatif">Bilan radiatif terrestre</span>
+    <h2><span class="num">5</span> Application : énergie reçue sur une autre planète</h2>
+    <ul>
+      <li>La même méthode s'applique à n'importe quelle planète. Données pour <b>Mars</b> :</li>
+      <li>Distance Soleil-Mars = <b>2,3 × 10¹¹ m</b></li>
+      <li>Rayon Mars = <b>3,33 × 10⁶ m</b></li>
+      <li>Puissance solaire (P<sub>s</sub>) = 3,84 × 10²⁶ W (identique)</li>
+    </ul>
+    <div class="box-blue">
+      Constante solaire Mars = P<sub>s</sub> / (4π × d²<sub>S-Mars</sub>)<br>
+      E/m² moyenne sur Mars = Constante solaire Mars / 4
+    </div>
+    <ul>
+      <li>Plus la planète est loin du Soleil, plus la constante solaire est <b>faible</b>.</li>
+      <li>Mars reçoit moins d'énergie que la Terre car elle est <b>plus éloignée</b> du Soleil.</li>
+    </ul>
+    <div class="tags">
+      <span class="tag tag-radiatif">Mars</span><span class="tag tag-radiatif">constante solaire</span>
+      <span class="tag tag-radiatif">distance planète-Soleil</span>
     </div>
   </div>
 
@@ -718,6 +751,9 @@
     { ch: 'radiatif', q: "Que vaut le bilan radiatif terrestre en équilibre ?", opts: ["341 W/m²", "1363 W/m²", "0", "0,3"], ok: 2, exp: "Bilan radiatif = Énergie reçue − Énergie émise = 0. La Terre est en équilibre dynamique." },
     { ch: 'radiatif', q: "Comment le bilan radiatif peut-il se déséquilibrer ?", opts: ["Par modification de la constante solaire uniquement", "Par modification de l'effet de serre et/ou de l'albédo", "Par la rotation de la Terre", "Par la photosynthèse"], ok: 1, exp: "Le bilan peut se déséquilibrer si l'effet de serre augmente (ex : plus de GES) ou si l'albédo change (ex : fonte des glaces)." },
     { ch: 'radiatif', q: "Si le bilan radiatif devient positif, que se passe-t-il ?", opts: ["La Terre se refroidit", "La température reste stable", "La Terre se réchauffe", "L'albédo augmente automatiquement"], ok: 2, exp: "Un bilan positif (énergie reçue > énergie émise) entraîne un réchauffement jusqu'au retour à l'équilibre." },
+    { ch: 'radiatif', q: "Quelle est la valeur de l'énergie solaire reçue par m² par la Terre (dans le bilan radiatif) ?", opts: ["170 W/m²", "341 W/m²", "342 W/m²", "1363 W/m²"], ok: 2, exp: "Le bilan radiatif utilise la valeur de 342 W/m² reçus en moyenne par la Terre (énergie reçue par le disque / surface de la sphère)." },
+    { ch: 'radiatif', q: "Décris le mécanisme de l'effet de serre :", opts: ["Le Soleil chauffe directement la Terre sans intermédiaire", "La surface absorbe les rayons solaires → émet des IR → les GES absorbent ces IR → re-émettent des IR vers la Terre", "Les GES réfléchissent les rayons solaires vers la Terre", "L'atmosphère empêche les IR de quitter la Terre"], ok: 1, exp: "La surface se réchauffe → émet des IR → absorbés par les GES → les GES re-émettent des IR vers la Terre. Ce retour d'énergie = effet de serre." },
+    { ch: 'radiatif', q: "Si une planète est plus éloignée du Soleil que la Terre, son énergie solaire reçue par m² est :", opts: ["Plus grande", "Identique", "Plus faible", "Cela dépend de son albédo"], ok: 2, exp: "Plus la planète est éloignée, plus la surface de la sphère autour du Soleil est grande, donc l'énergie se dilue et la constante solaire est plus faible." },
 
     // --- CRISTAUX (8 questions) ---
     { ch: 'cristaux', q: "Graphite et diamant ont la même composition chimique. Laquelle ?", opts: ["Silicium pur", "Carbone pur", "Calcite", "Hydroxyapatite"], ok: 1, exp: "Graphite et diamant sont tous deux du carbone pur, mais leurs propriétés sont radicalement différentes selon les conditions de formation." },
