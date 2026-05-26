@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Révision BAC SVT - Photosynthèse &amp; Énergie</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f0f5f0;
+      color: #1a2e1a;
+      min-height: 100vh;
+    }
+    header {
+      background: linear-gradient(135deg, #1a6b2a, #2d8c42);
+      color: white;
+      padding: 18px 20px 14px;
+      text-align: center;
+    }
+    header h1 { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.3px; }
+    header p { font-size: 0.82rem; opacity: 0.8; margin-top: 4px; }
+    nav {
+      display: flex;
+      background: #155222;
+      border-bottom: 1px solid #0d3a17;
+    }
+    nav button {
+      flex: 1;
+      padding: 13px 10px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.92rem;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.18s;
+      font-weight: 500;
+    }
+    nav button.active {
+      color: white;
+      border-bottom-color: #f0c430;
+    }
+    main { padding: 16px; max-width: 680px; margin: 0 auto; }
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ---- FICHES ---- */
+    .fiche {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      border-left: 4px solid #2d7d46;
+    }
+    .fiche h2 {
+      color: #1a6b2a;
+      font-size: 0.97rem;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .num {
+      background: #2d7d46;
+      color: white;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .fiche ul { padding-left: 18px; }
+    .fiche li { margin: 7px 0; font-size: 0.88rem; line-height: 1.6; }
+    .fiche li b { color: #1a5e28; }
+    .box-yellow {
+      background: #fffbea;
+      border: 1px solid #f0c430;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 0.87rem;
+      line-height: 1.7;
+    }
+    .box-green {
+      background: #eaf5ec;
+      border: 1px solid #2d7d46;
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin: 12px 0;
+      font-size: 0.87rem;
+      text-align: center;
+      font-family: monospace;
+      font-size: 0.88rem;
+      color: #1a5e28;
+      font-weight: 600;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .tag {
+      background: #eaf5ec;
+      color: #1a6b2a;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.76rem;
+      font-weight: 500;
+    }
+
+    /* ---- QCM ---- */
+    .qcm-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      color: #444;
+    }
+    .progress-bar {
+      height: 5px;
+      background: #ddd;
+      border-radius: 3px;
+      margin-bottom: 18px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: #2d7d46;
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+    .question-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .question-text {
+      font-size: 0.97rem;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 18px;
+      color: #1a2e1a;
+    }
+    .opt {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 11px 14px;
+      margin: 7px 0;
+      background: #f8f9fa;
+      border: 2px solid #e2e8e2;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.87rem;
+      line-height: 1.45;
+      transition: all 0.15s;
+      color: #1a2e1a;
+    }
+    .opt:hover:not(:disabled) {
+      background: #eaf5ec;
+      border-color: #2d7d46;
+    }
+    .opt.correct { background: #eaf5ec; border-color: #2d7d46; color: #1a5e28; font-weight: 600; }
+    .opt.wrong { background: #fdecea; border-color: #d32f2f; color: #b71c1c; }
+    .feedback {
+      margin-top: 14px;
+      padding: 10px 13px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      display: none;
+    }
+    .feedback.show { display: block; }
+    .feedback.ok { background: #eaf5ec; color: #1a5e28; border: 1px solid #2d7d46; }
+    .feedback.ko { background: #fdecea; color: #b71c1c; border: 1px solid #ef9a9a; }
+    .btn-next {
+      display: none;
+      width: 100%;
+      padding: 13px;
+      background: #1a6b2a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+    .btn-next.show { display: block; }
+
+    /* Score final */
+    .score-card {
+      background: white;
+      border-radius: 12px;
+      padding: 36px 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .score-big { font-size: 3.2rem; font-weight: 700; color: #1a6b2a; }
+    .score-sub { font-size: 0.95rem; color: #666; margin-top: 6px; }
+    .score-msg { font-size: 1rem; margin: 18px 0 22px; font-weight: 500; line-height: 1.5; }
+    .btn-restart {
+      padding: 12px 28px;
+      background: #1a6b2a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    @media (max-width: 420px) {
+      main { padding: 12px; }
+      .fiche { padding: 16px; }
+      header h1 { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Révision BAC SVT - Première</h1>
+  <p>Photosynthèse &amp; Énergie cellulaire</p>
+</header>
+
+<nav>
+  <button class="active" onclick="showTab('fiches', this)">Fiches de révision</button>
+  <button onclick="showTab('qcm', this)">QCM (15 questions)</button>
+</nav>
+
+<main>
+
+  <!-- ===== FICHES ===== -->
+  <section id="fiches" class="section active">
+
+    <div class="fiche">
+      <h2><span class="num">1</span> Production d'ATP - Cellules chlorophylliennes</h2>
+      <ul>
+        <li>Les cellules chlorophylliennes fabriquent des <b>molécules organiques</b> à partir de CO₂, d'eau et de minéraux grâce à la <b>photosynthèse</b>.</li>
+        <li>Molécules organiques produites : <b>glucides, lipides, amidon, acides nucléiques, protéines</b>.</li>
+        <li>Ces molécules sont ensuite utilisées pour fabriquer de l'<b>ATP</b> via la <b>respiration</b> (dans les <b>mitochondries</b>), en présence d'O₂.</li>
+      </ul>
+      <div class="box-green">Glucose + O₂ → CO₂ + H₂O + ATP (respiration)</div>
+      <div class="tags">
+        <span class="tag">photosynthèse</span>
+        <span class="tag">ATP</span>
+        <span class="tag">mitochondrie</span>
+        <span class="tag">respiration</span>
+        <span class="tag">glucose</span>
+        <span class="tag">chlorophylle</span>
+      </div>
+    </div>
+
+    <div class="fiche">
+      <h2><span class="num">2</span> Production d'ATP - Autres cellules</h2>
+      <ul>
+        <li>Les animaux, champignons et bactéries utilisent les molécules organiques issues de la photosynthèse pour produire de l'ATP par <b>dégradation</b>.</li>
+        <li>En l'absence d'O₂ (conditions <b>anaérobies</b>) : certaines cellules font la <b>fermentation alcoolique</b>.</li>
+      </ul>
+      <div class="box-green">Glucose → Éthanol + CO₂ + ATP (fermentation alcoolique)</div>
+      <ul>
+        <li>Exemple : levures dans un milieu sans O₂.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">fermentation alcoolique</span>
+        <span class="tag">anaérobie</span>
+        <span class="tag">éthanol</span>
+        <span class="tag">ATP</span>
+        <span class="tag">dégradation</span>
+      </div>
+    </div>
+
+    <div class="fiche">
+      <h2><span class="num">3</span> Devenir de la lumière dans la feuille</h2>
+      <ul>
+        <li>La lumière incidente reçue par une feuille est partagée en 3 parts :</li>
+      </ul>
+      <div class="box-yellow">
+        Lumière <b>incidente</b> = 100%<br>
+        &nbsp;&nbsp;→ Lumière <b>réfléchie</b> : ~12%<br>
+        &nbsp;&nbsp;→ Lumière <b>transmise</b> : ~27%<br>
+        &nbsp;&nbsp;→ Lumière <b>absorbée</b> : ~61%
+      </div>
+      <div class="box-green">% absorbée = 100 − % réfléchie − % transmise</div>
+      <ul>
+        <li>% réfléchie = (lumière réfléchie feuille / lumière réfléchie miroir) × 100</li>
+        <li>% transmise = (lumière transmise / lumière incidente) × 100</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">lumière incidente</span>
+        <span class="tag">lumière réfléchie</span>
+        <span class="tag">lumière transmise</span>
+        <span class="tag">lumière absorbée</span>
+        <span class="tag">luxmètre</span>
+      </div>
+    </div>
+
+    <div class="fiche">
+      <h2><span class="num">4</span> Pertes d'énergie par évapotranspiration</h2>
+      <ul>
+        <li>Sur les 61% d'énergie absorbée, <b>72% sont perdus</b> : ils provoquent l'évaporation de l'eau dans la feuille.</li>
+        <li>Il ne reste que <b>28%</b> de l'énergie absorbée utilisable pour la photosynthèse.</li>
+      </ul>
+      <div class="box-green">Énergie utilisable = (61 × 28) / 100 ≈ 17%</div>
+      <div class="box-yellow">
+        La part de l'énergie lumineuse <b>réellement utilisable pour la photosynthèse</b> est d'environ <b>17%</b>.
+      </div>
+      <div class="tags">
+        <span class="tag">évapotranspiration</span>
+        <span class="tag">72% perdus</span>
+        <span class="tag">17% utilisables</span>
+      </div>
+    </div>
+
+    <div class="fiche">
+      <h2><span class="num">5</span> Les stomates</h2>
+      <ul>
+        <li>Les feuilles transpirent grâce aux <b>stomates</b> situés sur l'épiderme inférieur de la feuille.</li>
+        <li>Un stomate = 2 <b>cellules de garde</b> + un <b>ostiole</b> (petit espace entre les cellules).</li>
+        <li>La vapeur d'eau s'échappe par l'ostiole : c'est l'<b>évapotranspiration</b>.</li>
+        <li>Les stomates s'ouvrent ou se ferment selon les conditions (lumière, disponibilité en eau).</li>
+        <li>Plus la lumière est forte, plus l'humidité dégagée par la feuille est importante.</li>
+      </ul>
+      <div class="tags">
+        <span class="tag">stomates</span>
+        <span class="tag">cellules de garde</span>
+        <span class="tag">ostiole</span>
+        <span class="tag">évaporation</span>
+        <span class="tag">vapeur d'eau</span>
+        <span class="tag">épiderme</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== QCM ===== -->
+  <section id="qcm" class="section">
+
+    <div id="qcm-quiz">
+      <div class="qcm-top">
+        <span id="q-num">Question 1/15</span>
+        <span id="q-live-score">Score : 0</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="question-card">
+        <div class="question-text" id="question-text"></div>
+        <div id="opts"></div>
+        <div class="feedback" id="feedback"></div>
+      </div>
+      <button class="btn-next" id="btn-next" onclick="nextQ()">Question suivante →</button>
+    </div>
+
+    <div id="qcm-score" style="display:none">
+      <div class="score-card">
+        <div class="score-big" id="final-score"></div>
+        <div class="score-sub">bonnes réponses sur 15</div>
+        <div class="score-msg" id="score-msg"></div>
+        <button class="btn-restart" onclick="restartQCM()">Recommencer le QCM</button>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script>
+  // Tab navigation
+  function showTab(name, btn) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.getElementById(name).classList.add('active');
+    btn.classList.add('active');
+    if (name === 'qcm' && !qcmReady) { startQCM(); qcmReady = true; }
+  }
+
+  // QCM data
+  const ALL_QUESTIONS = [
+    {
+      q: "Quelle molécule est la principale « monnaie énergétique » de la cellule ?",
+      opts: ["Glucose", "ATP", "ADP", "CO₂"],
+      ok: 1,
+      exp: "L'ATP (Adénosine TriPhosphate) est la molécule universelle d'énergie cellulaire, produite par la respiration ou la fermentation."
+    },
+    {
+      q: "La respiration cellulaire se déroule dans quel organite ?",
+      opts: ["Le chloroplaste", "Le noyau", "La mitochondrie", "La vacuole"],
+      ok: 2,
+      exp: "La respiration a lieu dans les mitochondries. Le chloroplaste est le siège de la photosynthèse."
+    },
+    {
+      q: "Dans quelles conditions les cellules réalisent-elles la fermentation alcoolique ?",
+      opts: ["En présence d'oxygène", "En l'absence d'oxygène (conditions anaérobies)", "À la lumière uniquement", "Dans les chloroplastes"],
+      ok: 1,
+      exp: "La fermentation alcoolique est un processus anaérobie : elle se produit en l'absence d'O₂. Le glucose est transformé en éthanol + CO₂ + ATP."
+    },
+    {
+      q: "Quel est le produit caractéristique de la fermentation alcoolique (en plus de l'ATP) ?",
+      opts: ["CO₂ uniquement", "O₂", "Éthanol", "Glucose"],
+      ok: 2,
+      exp: "La fermentation alcoolique produit de l'éthanol et du CO₂, ainsi que de l'ATP."
+    },
+    {
+      q: "Quelles molécules organiques les cellules chlorophylliennes fabriquent-elles par photosynthèse ?",
+      opts: [
+        "Seulement du glucose",
+        "Glucides, lipides, amidon, acides nucléiques, protéines",
+        "Uniquement des protéines",
+        "Eau et CO₂"
+      ],
+      ok: 1,
+      exp: "Les cellules chlorophylliennes fabriquent une grande variété de molécules organiques : glucides, lipides, amidon, acides nucléiques et protéines."
+    },
+    {
+      q: "Quelle fraction de la lumière incidente une feuille absorbe-t-elle environ ?",
+      opts: ["17%", "27%", "61%", "100%"],
+      ok: 2,
+      exp: "Environ 61% de la lumière incidente est absorbée. Les ~12% restants sont réfléchis et ~27% sont transmis à travers la feuille."
+    },
+    {
+      q: "Comment calcule-t-on le pourcentage de lumière absorbée par une feuille ?",
+      opts: [
+        "% réfléchie + % transmise",
+        "100 − % réfléchie − % transmise",
+        "(lumière incidente / lumière absorbée) × 100",
+        "% transmise × % réfléchie"
+      ],
+      ok: 1,
+      exp: "% absorbée = 100 − % réfléchie − % transmise. C'est la part restante après réflexion et transmission."
+    },
+    {
+      q: "Pour mesurer le % de lumière réfléchie par une feuille, on calcule :",
+      opts: [
+        "(lumière transmise par la feuille / lumière incidente) × 100",
+        "(lumière réfléchie par la feuille / lumière réfléchie par le miroir) × 100",
+        "(lumière incidente / lumière réfléchie) × 100",
+        "(lumière absorbée / lumière incidente) × 100"
+      ],
+      ok: 1,
+      exp: "On compare la lumière réfléchie par la feuille à celle réfléchie par un miroir (référence). C'est ce rapport × 100 qui donne le % réfléchi."
+    },
+    {
+      q: "Avec lumière incidente = 1 700 lux et lumière transmise = 460 lux, quel est le % de lumière transmise ?",
+      opts: ["11,7%", "17,1%", "27%", "61%"],
+      ok: 2,
+      exp: "% transmise = (460 / 1700) × 100 = 27%. C'est la lumière qui traverse la feuille sans être absorbée ni réfléchie."
+    },
+    {
+      q: "Quelle fraction de l'énergie absorbée par la feuille est perdue par évapotranspiration ?",
+      opts: ["17%", "28%", "61%", "72%"],
+      ok: 3,
+      exp: "72% de l'énergie absorbée est perdue par évapotranspiration : elle sert à chauffer l'eau qui s'évapore à travers les stomates."
+    },
+    {
+      q: "Quelle est la part de l'énergie lumineuse reçue réellement utilisable pour la photosynthèse ?",
+      opts: ["61%", "28%", "17%", "72%"],
+      ok: 2,
+      exp: "Calcul : 61% absorbés × 28% utilisables / 100 = 17,1%. La feuille ne peut utiliser qu'environ 17% de l'énergie lumineuse reçue."
+    },
+    {
+      q: "Par quelle structure la vapeur d'eau s'échappe-t-elle de la feuille ?",
+      opts: ["Les chloroplastes", "Les mitochondries", "L'ostiole des stomates", "Les cellules épidermiques"],
+      ok: 2,
+      exp: "L'ostiole est le petit espace entre les deux cellules de garde d'un stomate. C'est par cet orifice que la vapeur d'eau s'échappe."
+    },
+    {
+      q: "De quoi est constitué un stomate ?",
+      opts: [
+        "D'une seule grande cellule trouée",
+        "De deux cellules de garde formant un ostiole",
+        "De chloroplastes et mitochondries",
+        "De cellules épidermiques seulement"
+      ],
+      ok: 1,
+      exp: "Un stomate est formé de 2 cellules de garde qui délimitent un espace appelé ostiole. Il est observable sur l'épiderme inférieur de la feuille."
+    },
+    {
+      q: "Que se passe-t-il quand la feuille reçoit une forte intensité lumineuse ?",
+      opts: [
+        "L'évapotranspiration diminue",
+        "L'humidité dégagée par la feuille augmente",
+        "Les stomates se ferment immédiatement",
+        "La photosynthèse s'arrête"
+      ],
+      ok: 1,
+      exp: "Plus la lumière est forte, plus l'évapotranspiration est élevée. L'humidité dégagée par la feuille augmente avec l'intensité lumineuse."
+    },
+    {
+      q: "La photosynthèse permet aux cellules chlorophylliennes de :",
+      opts: [
+        "Produire de l'ATP uniquement à partir de glucose",
+        "Fabriquer des molécules organiques à partir de CO₂, eau et minéraux grâce à l'énergie lumineuse",
+        "Dégrader les molécules organiques",
+        "Produire de l'éthanol"
+      ],
+      ok: 1,
+      exp: "La photosynthèse permet de fabriquer des molécules organiques à partir de CO₂, d'eau et de minéraux, en capturant l'énergie lumineuse."
+    }
+  ];
+
+  let questions = [];
+  let currentQ = 0;
+  let score = 0;
+  let answered = false;
+  let qcmReady = false;
+
+  function shuffle(arr) {
+    return [...arr].sort(() => Math.random() - 0.5);
+  }
+
+  function startQCM() {
+    questions = shuffle(ALL_QUESTIONS);
+    currentQ = 0;
+    score = 0;
+    answered = false;
+    document.getElementById('qcm-quiz').style.display = 'block';
+    document.getElementById('qcm-score').style.display = 'none';
+    loadQ();
+  }
+
+  function loadQ() {
+    const q = questions[currentQ];
+    const total = questions.length;
+
+    document.getElementById('q-num').textContent = `Question ${currentQ + 1}/${total}`;
+    document.getElementById('q-live-score').textContent = `Score : ${score}`;
+    document.getElementById('progress-fill').style.width = `${(currentQ / total) * 100}%`;
+    document.getElementById('question-text').textContent = q.q;
+
+    const container = document.getElementById('opts');
+    container.innerHTML = '';
+    q.opts.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'opt';
+      btn.textContent = opt;
+      btn.onclick = () => answer(i);
+      container.appendChild(btn);
+    });
+
+    document.getElementById('feedback').className = 'feedback';
+    document.getElementById('feedback').textContent = '';
+
+    const btnNext = document.getElementById('btn-next');
+    btnNext.className = 'btn-next';
+    btnNext.textContent = currentQ < total - 1 ? 'Question suivante →' : 'Voir mon score';
+
+    answered = false;
+  }
+
+  function answer(idx) {
+    if (answered) return;
+    answered = true;
+
+    const q = questions[currentQ];
+    const btns = document.querySelectorAll('.opt');
+
+    btns.forEach(b => b.disabled = true);
+    btns[idx].classList.add(idx === q.ok ? 'correct' : 'wrong');
+    if (idx !== q.ok) btns[q.ok].classList.add('correct');
+
+    const fb = document.getElementById('feedback');
+    if (idx === q.ok) {
+      score++;
+      fb.className = 'feedback ok show';
+      fb.textContent = '✓ ' + q.exp;
+    } else {
+      fb.className = 'feedback ko show';
+      fb.textContent = '✗ ' + q.exp;
+    }
+
+    document.getElementById('q-live-score').textContent = `Score : ${score}`;
+    document.getElementById('btn-next').classList.add('show');
+  }
+
+  function nextQ() {
+    currentQ++;
+    if (currentQ >= questions.length) {
+      showScore();
+    } else {
+      loadQ();
+    }
+  }
+
+  function showScore() {
+    document.getElementById('qcm-quiz').style.display = 'none';
+    document.getElementById('qcm-score').style.display = 'block';
+    document.getElementById('final-score').textContent = `${score}/${questions.length}`;
+
+    const pct = score / questions.length;
+    let msg;
+    if (pct >= 0.87) msg = 'Excellent ! Ce chapitre est bien maîtrisé.';
+    else if (pct >= 0.67) msg = 'Bon résultat. Relis les fiches sur les points ratés.';
+    else if (pct >= 0.47) msg = 'En progression. Reprends les fiches avant de retenter.';
+    else msg = 'Commence par revoir toutes les fiches, puis refais le QCM.';
+
+    document.getElementById('score-msg').textContent = msg;
+  }
+
+  function restartQCM() {
+    startQCM();
+  }
+
+  // Init QCM on load so it's ready when tab is opened
+  startQCM();
+  qcmReady = true;
+</script>
+
+</body>
+</html>
